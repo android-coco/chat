@@ -1,0 +1,25 @@
+# 服务端监听配置
+service:
+  port: :8080
+  debug_mode: false
+  max_page_size: 100
+
+# log配置
+log:
+  path: /../config/log.xml
+
+
+# 数据库配置
+db:
+  host: 127.0.0.1:3306
+  user: root
+  pass: 12345678
+  db: eospark_openapi
+  max_open_connections: 20
+  max_idle_connections: 10
+
+# redis
+rdis:
+  host: 127.0.0.1:6379
+  pass:
+  db: 4
