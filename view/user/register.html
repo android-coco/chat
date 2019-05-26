@@ -116,8 +116,8 @@
                             return
                         }
                         post("user/register",this.user,function(res){
-                            if(res.code!=0){
-                                mui.toast(res.msg)
+                            if(res.errno!=0){
+                                mui.toast(res.errmsg)
                             }else{
                                 userInfo(res.data)
                                 userId(res.data.id)

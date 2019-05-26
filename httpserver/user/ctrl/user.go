@@ -11,10 +11,15 @@ import (
 
 var userService service.UserService
 
+type userLoginParam struct {
+	Mobile string `json:"mobile" form:"mobile" binding:"required" `
+	Passwd string `json:"passwd" form:"passwd" binding:"required"  `
+}
+
 func UserLogin(c *gin.Context) {
-	mobile := c.Query("mobile")
-	passWd := c.Query("passwd")
-	if mobile == "" || passWd == "" {
+	var userParam userLoginParam
+	err := c.ShouldBind(&userParam)
+	if nil != err {
 		util.RespFail(c, model.ApiResp{
 			ErrorNo:  http.StatusBadRequest,
 			ErrorMsg: "parameter violation!",
@@ -22,7 +27,7 @@ func UserLogin(c *gin.Context) {
 		return
 	}
 
-	user, err := userService.Login(mobile, passWd)
+	user, err := userService.Login(userParam.Mobile, userParam.Passwd)
 	if err != nil {
 		util.RespFail(c, model.ApiResp{
 			ErrorNo:  http.StatusInternalServerError,
@@ -50,7 +55,7 @@ type userParam struct {
 func UserRegister(c *gin.Context) {
 	var userParam userParam
 	err := c.ShouldBind(&userParam)
-	if nil != err{
+	if nil != err {
 		util.RespFail(c, model.ApiResp{
 			ErrorNo:  http.StatusBadRequest,
 			ErrorMsg: "parameter violation!",

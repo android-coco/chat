@@ -14,7 +14,7 @@
         <li class="chat " :class="item.ismine?'mine':'other'" v-for="item in msglist" v-if="item.msg.cmd==msgcontext.cmd && (( item.msg.cmd==10 &&  (item.ismine? item.msg.dstid==msgcontext.dstid : item.msg.dstid==msgcontext.userid )) || ( item.msg.cmd==11 &&  (item.msg.dstid==msgcontext.dstid))) ">
             
             <div >
-            <img class="avatar" :src="item.user.avatar ||'/asset/images/avatar0.png'" />
+            <img class="avatar" :src="item.user.avatar ||'/static/images/avatar0.png'" />
         </div>
 
         <span ></span>
@@ -22,7 +22,7 @@
             <div v-if="item.msg.media==1" v-text="item.msg.content"></div>
             <img class="pic" v-if="item.msg.media==4" :src="item.msg.url" />
             <div v-if="item.msg.media==3" @tap="playaudio(item.msg.url)">
-                <img class="audio" src="/asset/images/audiom.png" />
+                <img class="audio" src="/static/images/audiom.png" />
                 <span v-text="item.msg.amount"></span>
             </div>
         </div>
@@ -33,10 +33,10 @@
 </div>
 <div class="flex-container" >
     <div class="item-1" @tap="txtstat='audio'" v-if="txtstat=='kbord'">
-        <img src="/asset/images/audio.png" />
+        <img src="/static/images/audio.png" />
     </div>
     <div class="item-1" @tap="txtstat='kbord'" v-if="txtstat=='audio'">
-        <img src="/asset/images/kbord.png" />
+        <img src="/static/images/kbord.png" />
     </div>
     <div class="item-2" v-if="txtstat=='kbord'">
         <input placeholder="这里写点啥" class="text" type="text" v-model="txtmsg"/>
@@ -47,13 +47,13 @@
         </input>
     </div>
     <div class="item-3" @tap="panelstat='doutu'">
-        <img src="/asset/images/smile.png" />
+        <img src="/static/images/smile.png" />
     </div>
     <div class="item-4" v-if="!txtmsg" @tap="panelstat='more'">
-        <img src="/asset/images/more.png" />
+        <img src="/static/images/more.png" />
     </div>
     <div class="item-4" v-if="!!txtmsg" @tap="sendtxtmsg(txtmsg)">
-        <img src="/asset/images/send.png" />
+        <img src="/static/images/send.png" />
     </div>
 </div>
 <div id="panels" style="display: flex">
