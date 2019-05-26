@@ -40,8 +40,8 @@ func UserLogin(c *gin.Context) {
 }
 
 type userParam struct {
-	Mobile   string `json:"mobile" from:"mobile" `
-	Passwd   string `json:"passwd" form:"passwd"  `
+	Mobile   string `json:"mobile" form:"mobile" binding:"required" `
+	Passwd   string `json:"passwd" form:"passwd" binding:"required"  `
 	Avatar   string `json:"avatar" form:"avatar"`
 	Sex      string `json:"sex" form:"sex"`
 	Nickname string `json:"nickname" form:"nickname"`
