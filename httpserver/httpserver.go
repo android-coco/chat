@@ -15,12 +15,7 @@ func Run(serverAddr string) {
 	//各种中间件
 	router.Use(gin.Recovery())
 	router.Use(gin.ErrorLogger())
-	router.Use(middleware.EnableCors([]string{"eospark.com", "blockabc.com", "localhost:8000"}))
-	//静态文件
-	router.Static("/static", "/../static")
-	router.StaticFS("/static", http.Dir("/../static"))
-	router.StaticFile("/favicon.ico", "/../static/images/api.png")
-	router.LoadHTMLGlob("/../view/**/*")
+	router.Use(middleware.EnableCors([]string{"eospark.com", "blockabc.com", "localhost:8080"}))
 	initRoutes(router)
 	err := router.Run(serverAddr)
 	if err != nil {

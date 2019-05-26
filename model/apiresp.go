@@ -1,4 +1,4 @@
-package module
+package model
 
 type ApiResp struct {
 	ErrorNo  int64 `json:"errno"`

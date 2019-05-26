@@ -16,8 +16,8 @@ type Db struct {
 	User               string `yaml:"user"`
 	PassWd             string `yaml:"pass"`
 	Db                 string `yaml:"db"`
-	MaxOpenConnections string `yaml:"max_open_connections"`
-	MaxIdleConnections string `yaml:"max_idle_connections"`
+	MaxOpenConnections int `yaml:"max_open_connections"`
+	MaxIdleConnections int `yaml:"max_idle_connections"`
 }
 
 // Service 服务端配置
