@@ -15,7 +15,7 @@ func Run(serverAddr string) {
 	//各种中间件
 	router.Use(gin.Recovery())
 	router.Use(gin.ErrorLogger())
-	router.Use(middleware.EnableCors([]string{"eospark.com", "blockabc.com", "localhost:8080"}))
+	router.Use(middleware.EnableCors([]string{"eospark.com", "blockabc.com", "localhost:8181"}))
 	initRoutes(router)
 	err := router.Run(serverAddr)
 	if err != nil {
