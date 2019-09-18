@@ -60,24 +60,36 @@ func (user *UserService) Login(mobile,
 	plainPwd string) (model.User, error) {
 
 	//首先通过手机号查询用户
-	tmp :=model.User{}
+	tmp := model.User{}
 	db := db.GetDb()
-	db.Where("mobile = ?", mobile).Get(&tmp)
+	b, e := db.Where("mobile = ?", mobile).Get(&tmp)
+	fmt.Println(b, e)
 	//如果没有找到
-	if tmp.Id==0{
-		return tmp,errors.New("该用户不存在")
+	if tmp.Id == 0 {
+		return tmp, errors.New("该用户不存在")
 	}
 
 	//查询到了比对密码
-	if !util.ValidatePasswd(plainPwd,tmp.Salt,tmp.Passwd){
-		return tmp,errors.New("密码不正确")
+	if !util.ValidatePasswd(plainPwd, tmp.Salt, tmp.Passwd) {
+		return tmp, errors.New("密码不正确")
 	}
 
 	//刷新token,安全
-	str := fmt.Sprintf("%d",time.Now().Unix())
+	str := fmt.Sprintf("%d", time.Now().Unix())
 	token := util.MD5Encode(str)
 	tmp.Token = token
 	//返回数据
 	db.ID(tmp.Id).Cols("token").Update(&tmp)
-	return tmp,nil
+	return tmp, nil
+}
+
+//查找某个用户
+func (user *UserService) Find(userId int64) model.User {
+	//首先通过手机号查询用户
+	tmp := model.User{
+
+	}
+	db := db.GetDb()
+	db.ID(userId).Get(&tmp)
+	return tmp
 }

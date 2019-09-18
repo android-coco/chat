@@ -40,4 +40,5 @@ func initRoutes(router *gin.Engine) {
 	//绑定请求和处理函数
 	router.POST("/user/login", ctrl.UserLogin)
 	router.POST("/user/register", ctrl.UserRegister)
+	router.POST("/attach/upload", globle.Upload)
 }
