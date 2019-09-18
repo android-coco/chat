@@ -51,8 +51,8 @@
                 //封装了promis
                 util.post("user/login",this.user).then(res=>{
                     console.log(res)
-                    if(res.errno!=0){
-                        mui.toast(res.errmsg)
+                    if(res.code!=0){
+                        mui.toast(res.msg)
                     }else{
                         var url = "/chat/index.shtml?id="+res.data.id
                                 +"&token="+res.data.token

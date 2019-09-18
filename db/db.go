@@ -31,8 +31,8 @@ func GetDb() *xorm.Engine {
 	return db
 }
 
-func syncTable(){
-	err := db.Sync2(&model.User{},&model.Community{})
+func syncTable() {
+	err := db.Sync2(&model.User{}, &model.Community{}, &model.Contact{})
 	if err != nil {
 		log.Fatalf("init db sync table err %v \n", err)
 	}

@@ -31,7 +31,7 @@ func UserLogin(c *gin.Context) {
 	if err != nil {
 		util.RespFail(c, model.ApiResp{
 			ErrorNo:  http.StatusInternalServerError,
-			ErrorMsg: "login err",
+			ErrorMsg: err.Error(),
 		}, err)
 		return
 	}
@@ -65,7 +65,7 @@ func UserRegister(c *gin.Context) {
 	user, err := userService.Register(userParam.Mobile, userParam.Passwd, userParam.Nickname, userParam.Avatar, userParam.Sex)
 	if err != nil {
 		util.RespFail(c, model.ApiResp{
-			ErrorNo:  http.StatusBadRequest,
+			ErrorNo:  http.StatusInternalServerError,
 			ErrorMsg: err.Error(),
 		}, err)
 		return

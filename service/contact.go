@@ -24,7 +24,7 @@ func (service *ContactService) AddFriend(
 	//查询是否已经是好友
 	// 条件的链式操作
 	x, err := db.GetDb().Where("ownerid = ?", userid).
-		And("dstid = ?", dstid).
+		And("dstobj = ?", dstid).
 		And("cate = ?", model.CONCAT_CATE_USER).
 		Get(&tmp)
 	if err != nil{
