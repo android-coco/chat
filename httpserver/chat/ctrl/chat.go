@@ -68,9 +68,9 @@ type Node struct {
 }
 
 //映射关系表
-var clientMap map[int64]*Node = make(map[int64]*Node, 0)
+var clientMap = make(map[int64]*Node, 0)
 //读写锁
-var rwlocker sync.RWMutex
+var rwLocker sync.RWMutex
 
 var contactService service.ContactService
 
@@ -109,13 +109,13 @@ func Chat(c *gin.Context) {
 		node.GroupSets.Add(v)
 	}
 	//todo userid和node形成绑定关系
-	rwlocker.Lock()
+	rwLocker.Lock()
 	clientMap[userId] = node
-	rwlocker.Unlock()
+	rwLocker.Unlock()
 	//todo 完成发送逻辑,con
-	go sendproc(node)
+	go sendProc(node)
 	//todo 完成接收逻辑
-	go recvproc(node)
+	go recvProc(node)
 	log.Printf("<-%d\n", userId)
 	sendMsg(userId, []byte("hello,world!"))
 }
@@ -123,18 +123,18 @@ func Chat(c *gin.Context) {
 //todo 添加新的群ID到用户的groupset中
 func AddGroupId(userId, gid int64) {
 	//取得node
-	rwlocker.Lock()
+	rwLocker.Lock()
 	node, ok := clientMap[userId]
 	if ok {
 		node.GroupSets.Add(gid)
 	}
 	//clientMap[userId] = node
-	rwlocker.Unlock()
+	rwLocker.Unlock()
 	//添加gid到set
 }
 
 //ws发送协程
-func sendproc(node *Node) {
+func sendProc(node *Node) {
 	for {
 		select {
 		case data := <-node.DataQueue:
@@ -148,14 +148,14 @@ func sendproc(node *Node) {
 }
 
 //ws接收协程
-func recvproc(node *Node) {
+func recvProc(node *Node) {
 	for {
 		_, data, err := node.Conn.ReadMessage()
 		if err != nil {
 			log.Println(err.Error())
 			return
 		}
-		//dispatch(data)
+		dispatch(data)
 		//把消息广播到局域网
 		broadMsg(data)
 		log.Printf("[ws]<=%s\n", data)
@@ -255,9 +255,9 @@ func dispatch(data []byte) {
 
 //todo 发送消息
 func sendMsg(userId int64, msg []byte) {
-	rwlocker.RLock()
+	rwLocker.RLock()
 	node, ok := clientMap[userId]
-	rwlocker.RUnlock()
+	rwLocker.RUnlock()
 	if ok {
 		node.DataQueue <- msg
 	}
