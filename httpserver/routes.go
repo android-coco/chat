@@ -16,10 +16,10 @@ func initRoutes(router *gin.Engine) {
 	router.GET("/version", globle.Version)
 
 	//静态文件
-	router.StaticFS("/static", http.Dir("./static"))
+	router.StaticFS("/static", http.Dir("../static"))
 	router.StaticFS("/mnt", http.Dir("./mnt"))
-	router.StaticFile("/favicon.ico", "./static/logo.png")
-	router.LoadHTMLGlob("view/**/*")
+	router.StaticFile("/favicon.ico", "../static/logo.png")
+	router.LoadHTMLGlob("../view/**/*")
 
 	router.GET("/user/login.shtml", user.Login)
 

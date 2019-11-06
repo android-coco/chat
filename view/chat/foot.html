@@ -200,24 +200,23 @@
                         }
                         var that = this;
                         for(var id in res){
-                            //console.log("res[i]",id,res[id])
-                            post(res[id],{},function(pkginfo){
-                                //console.log("post res[i]",id,res[id],pkginfo)
+                            // console.log("res[i]",id,res[id])
+                            get(res[id],{},function(pkginfo){
+                                // console.log("get res[i]",id,res[id],pkginfo)
                                 var baseurl= config.baseurl+"/"+pkginfo.id+"/"
                                 for(var j in pkginfo.assets){
                                     pkginfo.assets[j] = baseurl+pkginfo.assets[j];
                                 }
                                 pkginfo.icon = baseurl + pkginfo.icon;
                                 that.doutu.packages.push(pkginfo)
-                                if(that.doutu.choosed.pkgid==pkginfo.id){
-                                    that.doutu.choosed.assets=pkginfo.assets;
+                                if(that.doutu.choosed.pkgid==pkginfo.id) {
+                                    that.doutu.choosed.assets = pkginfo.assets;
                                 }
-
                             })
                         }
                     },
                     showweixin:function(){
-                        mui.alert("请加微信号jiepool-winlion索取")
+                        mui.alert("请加微信号yhlovelyl索取")
                     } ,
                     showmsg:function(user,msg){
                         var data={
