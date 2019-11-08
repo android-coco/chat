@@ -106,12 +106,12 @@ http://localhost:8181/user/login.shtml
 
 ![登录](/img/login.jpg) 
 
-![添加好友1](/img/addfriend1.jpg)
+![添加好友](/img/addfriend1.jpg)
 
-![添加好友2](/img/addfriend2.jpg)
+![添加好友](/img/addfriend2.jpg)
 
-![添加好友3](/img/addfriend3.jpg)
+![添加好友](/img/addfriend3.jpg)
 
-![聊天1](/img/chat1.jpg)
+![聊天](/img/chat1.jpg)
 
-![聊天2](/img/chat2.jpg)
+![聊天](/img/chat2.jpg)
