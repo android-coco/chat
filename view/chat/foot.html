@@ -32,7 +32,7 @@
                     title:"",
                     doutu:{
                         config:{
-                            "baseurl":"static/plugins/doutu",
+                            "baseurl":"/static/plugins/doutu",
                             "pkgids":["mkgif","emoj"]
                         },
                         packages:[],
@@ -401,7 +401,7 @@
                     quit:function () {
                         sessionStorage.removeItem("userid")
                         sessionStorage.removeItem("userinfo")
-                        location.href="login.shtml"
+                        location.href="/user/login.shtml"
                     }
 
 

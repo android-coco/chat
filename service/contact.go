@@ -4,6 +4,7 @@ import (
 	"chat/db"
 	"chat/model"
 	"errors"
+	"fmt"
 	"log"
 	"time"
 )
@@ -15,10 +16,19 @@ type ContactService struct {
 func (service *ContactService) AddFriend(
 	userid, //用户id 10086,
 	dstid int64) error {
+
+	tmpUser := model.User{}
+	b, e := db.GetDb().Where("mobile = ? ", dstid).Get(&tmpUser)
+	fmt.Println(b, e)
+	//如果没有找到
+	if tmpUser.Id == 0 {
+		return errors.New("该用户不存在")
+	}
 	//如果加自己
-	if userid == dstid {
+	if tmpUser.Id == userid {
 		return errors.New("不能添加自己为好友啊")
 	}
+	dstid = tmpUser.Id
 	//判断是否已经加了好友
 	tmp := model.Contact{}
 	//查询是否已经是好友

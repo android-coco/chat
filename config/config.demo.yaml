@@ -2,7 +2,6 @@
 service:
   port: :8080
   debug_mode: false
-  max_page_size: 100
 
 # log配置
 log:
@@ -21,7 +20,7 @@ db:
   max_idle_connections: 10
 
 # redis
-rdis:
+redis:
   host: 127.0.0.1:6379
   pass:
   db: 4

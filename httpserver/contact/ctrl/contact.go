@@ -125,6 +125,7 @@ func Addfriend(c *gin.Context) {
 		}, errors.New("parameter violation "))
 		return
 	}
+
 	//调用service
 	err = contactService.AddFriend(arg.Userid, arg.Dstid)
 	//

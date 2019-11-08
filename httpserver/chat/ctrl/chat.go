@@ -163,8 +163,8 @@ func recvProc(node *Node) {
 }
 
 func init() {
-	go udpsendproc()
-	go udprecvproc()
+	//go udpsendproc()
+	//go udprecvproc()
 }
 
 //用来存放发送的要广播的数据

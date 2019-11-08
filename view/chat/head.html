@@ -67,7 +67,7 @@
 
             function get(uri,data,fn){
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET","//"+location.host+"/"+uri, true);
+                xhr.open("GET","//"+location.host+""+uri, true);
                 // 添加http头，发送信息至服务器时内容编码类型
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 xhr.onreadystatechange = function() {
