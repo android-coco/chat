@@ -1,4 +1,4 @@
-### chat
+# IM
 
 ## 支持10万人同时在线 Go语言打造高并发web即时聊天(IM)应用
 
@@ -100,8 +100,9 @@ http://localhost:8181/user/login.shtml
 添加好友
 个人中心->添加好友
 
-
-
 ```
+### 演示截图
+![登录](/img/login.jpg) ![注册](/img/register.jpg) ![添加好友1](/img/addfriend1.jpg)![添加好友2](/img/addfriend2.jpg)
+![添加好友3](/img/addfriend3.jpg)![聊天1](/img/chat1.jpg)![聊天2](/img/chat2.jpg)
 
 
